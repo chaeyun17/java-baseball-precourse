@@ -32,4 +32,19 @@ public class GameView {
 		}
 		return builder.toString();
 	}
+
+	public void printWin(){
+		String msg = "3개의 숫자를 모두 맞히셨습니다! 게임 끝";
+		System.out.println(msg);
+	}
+
+	public String getResumeInput() {
+		String msg = "게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.";
+		System.out.println(msg);
+		return Console.readLine();
+	}
+
+	public void printEndGame() {
+		System.out.println("게임이 종료되었습니다.");
+	}
 }

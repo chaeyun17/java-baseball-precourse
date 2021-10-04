@@ -9,6 +9,9 @@ public class GameController {
 	private final GameView gameView;
 	private final GameModel gameModel;
 
+	public static final String COMMAND_STR_REPLAY = "1";
+	public static final String COMMAND_STR_EXIT = "2";
+
 	public GameController(GameView gameView, GameModel gameModel){
 		this.gameModel = gameModel;
 		this.gameView = gameView;
@@ -17,8 +20,25 @@ public class GameController {
 	public void start(){
 		boolean isPlay = true;
 		while (isPlay){
-			playRound();
+			boolean isWinRound = playRound();
+			if(isWinRound){
+				gameView.printWin();
+				isPlay = isReplayGame();
+			}
 		}
+		gameView.printEndGame();
+	}
+
+	private boolean isReplayGame(){
+		String playerInput = gameView.getResumeInput();
+		if (playerInput.equals(COMMAND_STR_REPLAY)){
+			return true;
+		}
+		if(playerInput.equals(COMMAND_STR_EXIT)){
+			return false;
+		}
+		// TODO: 잘못된 입력값 예외처리
+		return false;
 	}
 
 	private boolean playRound(){
@@ -32,10 +52,12 @@ public class GameController {
 
 	private boolean playTurn(char[] answer){
 		String playerInput = gameView.getInput();
-		System.out.println(playerInput);
+
+		// TODO: INPUT VALIDATE
+
 		Score score = gameModel.calculateScore(answer, playerInput);
 		gameView.printScore(toDto(score));
-		return true;
+		return gameModel.isWin(score);
 	}
 
 	private ScoreDto toDto(Score score){

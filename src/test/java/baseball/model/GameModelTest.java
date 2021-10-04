@@ -50,4 +50,22 @@ class GameModelTest {
 		assertThat(score.getStrikeCnt()).isEqualTo(strikeCnt);
 		assertThat(score.getBallCnt()).isEqualTo(ballCnt);
 	}
+
+	@Test
+	void isWinTest() {
+		isWinTest_ShouldCheckIsWin(3,0,true);
+		isWinTest_ShouldCheckIsWin(2,1,false);
+		isWinTest_ShouldCheckIsWin(0,2,false);
+	}
+
+	private void isWinTest_ShouldCheckIsWin(int strikeCnt, int ballCnt, boolean expected){
+		// given
+		Score score = new Score(strikeCnt, ballCnt);
+
+		// when
+		boolean actual = gameModel.isWin(score);
+
+		// then
+		assertThat(actual).isEqualTo(expected);
+	}
 }

@@ -44,4 +44,8 @@ public class GameModel {
 		return false;
 	}
 
+	public boolean isWin(Score score){
+		return score.getStrikeCnt() == 3;
+	}
+
 }

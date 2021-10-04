@@ -68,4 +68,23 @@ class GameModelTest {
 		// then
 		assertThat(actual).isEqualTo(expected);
 	}
+
+	@Test
+	void isValidInputTest() {
+		isValidInputTest_ShouldCheckIsValid("123", true);
+		isValidInputTest_ShouldCheckIsValid("345", true);
+
+		isValidInputTest_ShouldCheckIsValid("12345", false);
+		isValidInputTest_ShouldCheckIsValid("1", false);
+		isValidInputTest_ShouldCheckIsValid("2", false);
+		isValidInputTest_ShouldCheckIsValid("abc", false);
+	}
+
+	private void isValidInputTest_ShouldCheckIsValid(String input, boolean expected){
+		// when
+		boolean actual = gameModel.isValidInput(input);
+
+		// then
+		assertThat(actual).isEqualTo(expected);
+	}
 }

@@ -37,7 +37,7 @@ public class GameController {
 		if(playerInput.equals(COMMAND_STR_EXIT)){
 			return false;
 		}
-		// TODO: 잘못된 입력값 예외처리
+		gameView.printInputError();
 		return false;
 	}
 
@@ -52,9 +52,10 @@ public class GameController {
 
 	private boolean playTurn(char[] answer){
 		String playerInput = gameView.getInput();
-
-		// TODO: INPUT VALIDATE
-
+		if(!gameModel.isValidInput(playerInput)){
+			gameView.printInputError();
+			return false;
+		}
 		Score score = gameModel.calculateScore(answer, playerInput);
 		gameView.printScore(toDto(score));
 		return gameModel.isWin(score);

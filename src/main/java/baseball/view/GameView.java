@@ -19,16 +19,16 @@ public class GameView {
 		int strikeCnt = score.getStrikeCnt();
 		int ballCnt = score.getBallCnt();
 		if(strikeCnt == 0 && ballCnt == 0){
-			builder.append("낫싱");
+			builder.append("낫싱 ");
 			return builder.toString();
 		}
 		if(strikeCnt != 0){
 			builder.append(strikeCnt);
-			builder.append("스트라이크");
+			builder.append("스트라이크 ");
 		}
 		if(ballCnt != 0){
 			builder.append(ballCnt);
-			builder.append("볼");
+			builder.append("볼 ");
 		}
 		return builder.toString();
 	}
@@ -46,5 +46,9 @@ public class GameView {
 
 	public void printEndGame() {
 		System.out.println("게임이 종료되었습니다.");
+	}
+
+	public void printInputError() {
+		System.out.println("[ERROR] 잘못된 입력값입니다.");
 	}
 }

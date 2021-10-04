@@ -4,6 +4,24 @@ import nextstep.utils.Randoms;
 
 public class GameModel {
 
+	public Score calculateScore(char[] answerCharAry, String playerInput){
+		char[] inputAry = playerInput.toCharArray();
+		int strikeCnt = 0;
+		int ballCnt = 0;
+
+		for(int i=0; i<answerCharAry.length; i++){
+			if(inputAry[i] == answerCharAry[i]){
+				strikeCnt++;
+				continue;
+			}
+			if(isContainChar(inputAry[i], answerCharAry)){
+				ballCnt++;
+			}
+		}
+
+		return new Score(strikeCnt, ballCnt);
+	}
+
 	public char[] generateAnswer() {
 		char[] answerAry = new char[3];
 		for(int i=0; i<3; i++){
@@ -25,4 +43,5 @@ public class GameModel {
 		}
 		return false;
 	}
+
 }

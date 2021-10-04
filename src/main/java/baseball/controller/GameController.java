@@ -1,6 +1,7 @@
 package baseball.controller;
 
 import baseball.model.GameModel;
+import baseball.model.Score;
 import baseball.view.GameView;
 
 public class GameController {
@@ -32,6 +33,12 @@ public class GameController {
 	private boolean playTurn(char[] answer){
 		String playerInput = gameView.getInput();
 		System.out.println(playerInput);
+		Score score = gameModel.calculateScore(answer, playerInput);
+		gameView.printScore(toDto(score));
 		return true;
+	}
+
+	private ScoreDto toDto(Score score){
+		return new ScoreDto(score.getStrikeCnt(), score.getBallCnt());
 	}
 }

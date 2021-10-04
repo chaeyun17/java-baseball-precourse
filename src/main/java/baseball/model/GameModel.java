@@ -60,7 +60,7 @@ public class GameModel {
 
 	private boolean isRangeNumbers(String input){
 		for(char c : input.toCharArray()){
-			if(!isRangeNumber(0, 9, c)){
+			if(!isRangeNumber(1, 9, c)){
 				return false;
 			}
 		}

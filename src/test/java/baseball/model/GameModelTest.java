@@ -74,6 +74,7 @@ class GameModelTest {
 		isValidInputTest_ShouldCheckIsValid("123", true);
 		isValidInputTest_ShouldCheckIsValid("345", true);
 
+		isValidInputTest_ShouldCheckIsValid("021", false);
 		isValidInputTest_ShouldCheckIsValid("12345", false);
 		isValidInputTest_ShouldCheckIsValid("1", false);
 		isValidInputTest_ShouldCheckIsValid("2", false);

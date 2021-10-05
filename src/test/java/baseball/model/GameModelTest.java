@@ -5,13 +5,15 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import baseball.config.GameConfig;
+
 class GameModelTest {
 
 	GameModel gameModel;
 
 	@BeforeEach
 	public void setup(){
-		gameModel = new GameModel();
+		gameModel = new GameModel(new GameConfig());
 	}
 
 	@Test

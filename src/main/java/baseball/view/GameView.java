@@ -1,9 +1,16 @@
 package baseball.view;
 
+import baseball.config.GameConfig;
 import baseball.controller.ScoreDto;
 import nextstep.utils.Console;
 
 public class GameView {
+
+	private final int digit;
+
+	public GameView(GameConfig gameConfig){
+		this.digit = gameConfig.getDigit();
+	}
 
 	public String getInput(){
 		System.out.println("숫자를 입력해주세요: ");
@@ -34,7 +41,8 @@ public class GameView {
 	}
 
 	public void printWin(){
-		String msg = "3개의 숫자를 모두 맞히셨습니다! 게임 끝";
+		String msg = digit +
+			"개의 숫자를 모두 맞히셨습니다! 게임 끝";
 		System.out.println(msg);
 	}
 

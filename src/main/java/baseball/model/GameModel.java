@@ -1,8 +1,19 @@
 package baseball.model;
 
+import baseball.config.GameConfig;
 import nextstep.utils.Randoms;
 
 public class GameModel {
+
+	private final int maxNumber;
+	private final int minNumber;
+	private final int digit;
+
+	public GameModel(GameConfig gameConfig){
+		this.maxNumber = gameConfig.getMaxNumber();
+		this.minNumber = gameConfig.getMinNumber();
+		this.digit = gameConfig.getDigit();
+	}
 
 	public Score calculateScore(char[] answerCharAry, String playerInput){
 		char[] inputAry = playerInput.toCharArray();
@@ -23,11 +34,11 @@ public class GameModel {
 	}
 
 	public char[] generateAnswer() {
-		char[] answerAry = new char[3];
-		for(int i=0; i<3; i++){
+		char[] answerAry = new char[digit];
+		for(int i = 0; i<digit; i++){
 			char randomNumChar;
 			do{
-				int number =  Randoms.pickNumberInRange(1, 9);
+				int number =  Randoms.pickNumberInRange(maxNumber, minNumber);
 				randomNumChar = Character.forDigit(number, 10);
 			}while(isContainChar(randomNumChar, answerAry));
 			answerAry[i] = randomNumChar;
@@ -36,7 +47,7 @@ public class GameModel {
 	}
 
 	public boolean isWin(Score score){
-		return score.getStrikeCnt() == 3;
+		return score.getStrikeCnt() == digit;
 	}
 
 	public boolean isValidInput(String input){

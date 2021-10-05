@@ -1,5 +1,6 @@
 package baseball.controller;
 
+import baseball.config.GameConfig;
 import baseball.model.GameModel;
 import baseball.model.Score;
 import baseball.view.GameView;
@@ -8,13 +9,17 @@ public class GameController {
 
 	private final GameView gameView;
 	private final GameModel gameModel;
+	private final GameConfig gameConfig;
 
-	public static final String COMMAND_STR_REPLAY = "1";
-	public static final String COMMAND_STR_EXIT = "2";
+	public final String replayCommand;
+	public final String exitCommand;
 
-	public GameController(GameView gameView, GameModel gameModel){
+	public GameController(GameView gameView, GameModel gameModel, GameConfig gameConfig){
 		this.gameModel = gameModel;
 		this.gameView = gameView;
+		this.gameConfig = gameConfig;
+		this.replayCommand = gameConfig.getCommandReplay();
+		this.exitCommand = gameConfig.getCommandExit();
 	}
 
 	public void start(){
@@ -31,10 +36,10 @@ public class GameController {
 
 	private boolean isReplayGame(){
 		String playerInput = gameView.getResumeInput();
-		if (playerInput.equals(COMMAND_STR_REPLAY)){
+		if (playerInput.equals(replayCommand)){
 			return true;
 		}
-		if(playerInput.equals(COMMAND_STR_EXIT)){
+		if(playerInput.equals(exitCommand)){
 			return false;
 		}
 		gameView.printInputError();

@@ -5,9 +5,10 @@ public class ScoreDto {
 	private int strikeCnt;
 	private int ballCnt;
 
-	public ScoreDto(){}
+	public ScoreDto() {
+	}
 
-	public ScoreDto(int strikeCnt, int ballCnt){
+	public ScoreDto(int strikeCnt, int ballCnt) {
 		this.strikeCnt = strikeCnt;
 		this.ballCnt = ballCnt;
 	}

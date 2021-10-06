@@ -12,36 +12,36 @@ public class GameConfig {
 		return maxNumber;
 	}
 
-	public int getMinNumber() {
-		return minNumber;
-	}
-
-	public int getDigit() {
-		return digit;
-	}
-
-	public String getCommandReplay() {
-		return commandReplay;
-	}
-
-	public String getCommandExit() {
-		return commandExit;
-	}
-
 	public void setMaxNumber(int maxNumber) {
 		this.maxNumber = maxNumber;
+	}
+
+	public int getMinNumber() {
+		return minNumber;
 	}
 
 	public void setMinNumber(int minNumber) {
 		this.minNumber = minNumber;
 	}
 
+	public int getDigit() {
+		return digit;
+	}
+
 	public void setDigit(int digit) {
 		this.digit = digit;
 	}
 
+	public String getCommandReplay() {
+		return commandReplay;
+	}
+
 	public void setCommandReplay(String commandReplay) {
 		this.commandReplay = commandReplay;
+	}
+
+	public String getCommandExit() {
+		return commandExit;
 	}
 
 	public void setCommandExit(String commandExit) {

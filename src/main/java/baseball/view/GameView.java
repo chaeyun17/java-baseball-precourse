@@ -8,11 +8,11 @@ public class GameView {
 
 	private final int digit;
 
-	public GameView(GameConfig gameConfig){
+	public GameView(GameConfig gameConfig) {
 		this.digit = gameConfig.getDigit();
 	}
 
-	public String getInput(){
+	public String getInput() {
 		System.out.println("숫자를 입력해주세요: ");
 		return Console.readLine();
 	}
@@ -21,26 +21,26 @@ public class GameView {
 		System.out.println(getScoreStatusMsg(score));
 	}
 
-	private String getScoreStatusMsg(ScoreDto score){
+	private String getScoreStatusMsg(ScoreDto score) {
 		StringBuilder builder = new StringBuilder();
 		int strikeCnt = score.getStrikeCnt();
 		int ballCnt = score.getBallCnt();
-		if(strikeCnt == 0 && ballCnt == 0){
+		if (strikeCnt == 0 && ballCnt == 0) {
 			builder.append("낫싱 ");
 			return builder.toString();
 		}
-		if(strikeCnt != 0){
+		if (strikeCnt != 0) {
 			builder.append(strikeCnt);
 			builder.append("스트라이크 ");
 		}
-		if(ballCnt != 0){
+		if (ballCnt != 0) {
 			builder.append(ballCnt);
 			builder.append("볼 ");
 		}
 		return builder.toString();
 	}
 
-	public void printWin(){
+	public void printWin() {
 		String msg = digit +
 			"개의 숫자를 모두 맞히셨습니다! 게임 끝";
 		System.out.println(msg);

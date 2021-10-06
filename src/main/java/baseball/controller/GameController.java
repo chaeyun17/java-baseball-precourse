@@ -7,57 +7,59 @@ import baseball.view.GameView;
 
 public class GameController {
 
-	private final GameView gameView;
-	private final GameModel gameModel;
-	private final GameConfig gameConfig;
-
 	public final String replayCommand;
 	public final String exitCommand;
+	private final GameView gameView;
+	private final GameModel gameModel;
 
-	public GameController(GameView gameView, GameModel gameModel, GameConfig gameConfig){
+	public GameController(GameView gameView, GameModel gameModel, GameConfig gameConfig) {
 		this.gameModel = gameModel;
 		this.gameView = gameView;
-		this.gameConfig = gameConfig;
 		this.replayCommand = gameConfig.getCommandReplay();
 		this.exitCommand = gameConfig.getCommandExit();
 	}
 
-	public void start(){
+	public void start() {
 		boolean isPlay = true;
-		while (isPlay){
+		while (isPlay) {
 			boolean isWinRound = playRound();
-			if(isWinRound){
-				gameView.printWin();
-				isPlay = isReplayGame();
-			}
+			isPlay = askReplay(isWinRound);
 		}
 		gameView.printEndGame();
 	}
 
-	private boolean isReplayGame(){
+	private boolean askReplay(boolean isWinRound) {
+		if (!isWinRound) {
+			return false;
+		}
+		gameView.printWin();
+		return isReplayGame();
+	}
+
+	private boolean isReplayGame() {
 		String playerInput = gameView.getResumeInput();
-		if (playerInput.equals(replayCommand)){
+		if (playerInput.equals(replayCommand)) {
 			return true;
 		}
-		if(playerInput.equals(exitCommand)){
+		if (playerInput.equals(exitCommand)) {
 			return false;
 		}
 		gameView.printInputError();
 		return false;
 	}
 
-	private boolean playRound(){
+	private boolean playRound() {
 		char[] answerCharAry = gameModel.generateAnswer();
 		boolean isWin = false;
-		while (!isWin){
+		while (!isWin) {
 			isWin = playTurn(answerCharAry);
 		}
 		return true;
 	}
 
-	private boolean playTurn(char[] answer){
+	private boolean playTurn(char[] answer) {
 		String playerInput = gameView.getInput();
-		if(!gameModel.isValidInput(playerInput)){
+		if (!gameModel.isValidInput(playerInput)) {
 			gameView.printInputError();
 			return false;
 		}
@@ -66,7 +68,7 @@ public class GameController {
 		return gameModel.isWin(score);
 	}
 
-	private ScoreDto toDto(Score score){
+	private ScoreDto toDto(Score score) {
 		return new ScoreDto(score.getStrikeCnt(), score.getBallCnt());
 	}
 }
